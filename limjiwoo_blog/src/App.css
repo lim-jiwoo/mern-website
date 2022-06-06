@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--color-bg);
+    font-family: var(--font-family);
+    color: var(--color-text);
+}
+
+a {
+    color: unset;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
