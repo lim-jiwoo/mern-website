@@ -21,14 +21,14 @@ const Navbar = () => {
         }
         {toggleMenu && (
           <div className="blog__navbar-menu_container">
-            <div className="blog__navbar-menu_search">
+            <div className="blog__navbar-menu_section">
               <input type="text" className="blog__navbar-menu_input" placeholder="제목으로 검색" />
               <input type="text" className="blog__navbar-menu_input" placeholder="태그로 검색" />
               <button className="blog__navbar-menu_button-primary">Search</button>
             </div>
 
             {user && (
-              <div className="blog__navbar-menu_upload">
+              <div className="blog__navbar-menu_section">
                 <input type="text" className="blog__navbar-menu_input" placeholder="제목 입력" />
                 <input type="text" className="blog__navbar-menu_input" placeholder="태그 입력" />
                 <button className="blog__navbar-menu_button-primary">Submit</button>

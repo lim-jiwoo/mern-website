@@ -4,7 +4,8 @@
   --font-family: 'Manrope', sans-serif;
 
   --color-bg: #000000;
-  --color-highlight : #EE557A;
+  --color-primary : #EE557A;
+  --color-secondary : #CB9DA8;
 
   --color-modal: rgba(88, 88, 88, 0.8);
   --color-shade: rgba(24, 24, 24, 0.7);
