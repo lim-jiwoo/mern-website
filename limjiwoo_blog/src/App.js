@@ -6,6 +6,7 @@ import { About, Artwork, Artworks, Cover, Navbar } from './containers';
 const App = () => {
     return (
         <div className="App">
+            <Navbar />
             <About />
         </div>
     )
