@@ -1,11 +1,17 @@
 import React, {useState} from 'react';
 import {RiMenu3Line, RiCloseLine } from 'react-icons/ri';
+import FileBase from 'react-file-base64';
 
 import './navbar.css';
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [image, setImage] = useState('');
   const user = true;
+
+  const handleSubmit = (e) => {
+    // e.preventDefault();
+  }
 
   return (
     <nav className="blog__navbar">
@@ -31,7 +37,15 @@ const Navbar = () => {
               <div className="blog__navbar-menu_section">
                 <input type="text" className="blog__navbar-menu_input" placeholder="제목 입력" />
                 <input type="text" className="blog__navbar-menu_input" placeholder="태그 입력" />
-                <button className="blog__navbar-menu_button-primary">Submit</button>
+                {image
+                  ? <img src={image} alt="Uploaded picture" />
+                  : <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="No uploaded picture" />
+                }
+                <FileBase
+                  multiple={false}
+                  onDone={({base64}) => setImage(base64)}
+                ></FileBase>
+                <button className="blog__navbar-menu_button-primary" onClick={handleSubmit}>Submit</button>
                 <button className="blog__navbar-menu_button-secondary">Clear</button>
               </div>
             )}
