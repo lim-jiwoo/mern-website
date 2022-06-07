@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import {RiMenu3Line, RiCloseLine } from 'react-icons/ri';
+<<<<<<< HEAD
 import FileBase from 'react-file-base64';
+=======
+>>>>>>> 73341199d6b10ae1eb37fafb86213981a0e6c7a9
 
 import './navbar.css';
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
+<<<<<<< HEAD
   const [image, setImage] = useState('');
   const user = true;
 
@@ -13,6 +17,10 @@ const Navbar = () => {
     // e.preventDefault();
   }
 
+=======
+  const user = true;
+
+>>>>>>> 73341199d6b10ae1eb37fafb86213981a0e6c7a9
   return (
     <nav className="blog__navbar">
       <div className="blog__navbar-title">
