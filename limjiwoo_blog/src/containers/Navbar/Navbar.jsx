@@ -1,26 +1,22 @@
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {RiMenu3Line, RiCloseLine } from 'react-icons/ri';
-<<<<<<< HEAD
 import FileBase from 'react-file-base64';
-=======
->>>>>>> 73341199d6b10ae1eb37fafb86213981a0e6c7a9
 
 import './navbar.css';
+import {createPost} from '../../actions/posts';
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const [toggleMenu, setToggleMenu] = useState(false);
-<<<<<<< HEAD
-  const [image, setImage] = useState('');
+  const [postData, setPostData] = useState({title:'', tags:'', image:''});
   const user = true;
 
   const handleSubmit = (e) => {
     // e.preventDefault();
+    dispatch(createPost(postData));
   }
 
-=======
-  const user = true;
-
->>>>>>> 73341199d6b10ae1eb37fafb86213981a0e6c7a9
   return (
     <nav className="blog__navbar">
       <div className="blog__navbar-title">
@@ -43,15 +39,15 @@ const Navbar = () => {
 
             {user && (
               <div className="blog__navbar-menu_section">
-                <input type="text" className="blog__navbar-menu_input" placeholder="제목 입력" />
-                <input type="text" className="blog__navbar-menu_input" placeholder="태그 입력" />
-                {image
-                  ? <img src={image} alt="Uploaded picture" />
+                <input type="text" className="blog__navbar-menu_input" placeholder="제목 입력" value={postData.title} onChange={(e) => setPostData({...postData, title: e.target.value})} />
+                <input type="text" className="blog__navbar-menu_input" placeholder="태그 입력 - 쉼표(,)로 구분" value={postData.tags} onChange={(e) => setPostData({...postData, tags: e.target.value.split(',')})} />
+                {postData.image
+                  ? <img src={postData.image} alt="Uploaded picture" />
                   : <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="No uploaded picture" />
                 }
                 <FileBase
                   multiple={false}
-                  onDone={({base64}) => setImage(base64)}
+                  onDone={({base64}) => setPostData({...postData, image:base64})}
                 ></FileBase>
                 <button className="blog__navbar-menu_button-primary" onClick={handleSubmit}>Submit</button>
                 <button className="blog__navbar-menu_button-secondary">Clear</button>
