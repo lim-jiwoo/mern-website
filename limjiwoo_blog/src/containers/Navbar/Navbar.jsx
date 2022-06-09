@@ -17,6 +17,10 @@ const Navbar = () => {
     dispatch(createPost(postData));
   }
 
+  const handleClear = () => {
+    setPostData({title:'', tags:'', image:''});
+  }
+
   return (
     <nav className="blog__navbar">
       <div className="blog__navbar-title">
@@ -50,7 +54,7 @@ const Navbar = () => {
                   onDone={({base64}) => setPostData({...postData, image:base64})}
                 ></FileBase>
                 <button className="blog__navbar-menu_button-primary" onClick={handleSubmit}>Submit</button>
-                <button className="blog__navbar-menu_button-secondary">Clear</button>
+                <button className="blog__navbar-menu_button-secondary" onClick={handleClear}>Clear</button>
               </div>
             )}
             
