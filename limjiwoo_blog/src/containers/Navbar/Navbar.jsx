@@ -12,9 +12,11 @@ const Navbar = () => {
   const [postData, setPostData] = useState({title:'', tags:'', image:''});
   const user = true;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     // e.preventDefault();
-    dispatch(createPost(postData));
+    await dispatch(createPost(postData));
+    handleClear();
+    setToggleMenu(false);
   }
 
   const handleClear = () => {
