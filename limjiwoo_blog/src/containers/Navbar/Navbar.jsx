@@ -9,7 +9,7 @@ import {createPost} from '../../actions/posts';
 const Navbar = () => {
   const dispatch = useDispatch();
   const [toggleMenu, setToggleMenu] = useState(false);
-  const [postData, setPostData] = useState({title:'', tags:'', image:''});
+  const [postData, setPostData] = useState({title:'', tags:[], image:''});
   const inputEmpty = postData.title && postData.image ? false : true;
   const user = true;
 
@@ -21,7 +21,7 @@ const Navbar = () => {
   }
 
   const handleClear = () => {
-    setPostData({title:'', tags:'', image:''});
+    setPostData({title:'', tags:[], image:''});
   }
 
   return (
