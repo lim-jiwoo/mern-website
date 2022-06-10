@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import { About, Artwork, Artworks, Cover, Navbar } from './containers';
@@ -13,10 +14,13 @@ const App = () => {
     }, [dispatch]);
 
     return (
-        <div className="App">
+        <BrowserRouter>
             <Navbar />
-            <About />
-        </div>
+            <Routes>
+                <Route path="/posts" element={<Artworks />}/>
+                <Route path="/posts/:id" element={<Artwork />}/>
+            </Routes>
+        </BrowserRouter>
     )
 }
 
