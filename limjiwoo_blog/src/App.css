@@ -19,3 +19,10 @@ img {
     max-width: 100%;
     display: block;
 }
+
+.sqaure-image {
+    width: 15vw;
+    height: 15vw;
+    min-width: 220px;
+    min-height: 220px;
+}

@@ -1,0 +1,9 @@
+.blog__artworks-posts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    width: 75vw;
+    margin: auto;
+}
