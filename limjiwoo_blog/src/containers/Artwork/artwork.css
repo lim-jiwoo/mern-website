@@ -1,0 +1,28 @@
+.blog__artwork {
+    width: 50vw;
+    margin: auto;
+
+    margin-bottom: 3rem;
+}
+
+.blog__artwork-img {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 2rem;
+}
+
+.blog__artwork img {
+    max-height: 90vh;
+}
+
+.blog__artwork-title {
+    font: 2rem/2.25rem var(--font-family);
+    
+    margin-bottom: 2rem;
+}
+
+.blog__artwork-tags {
+    font: 1rem/1.25rem var(--font-family);
+    color: var(--color-subtext);
+}
