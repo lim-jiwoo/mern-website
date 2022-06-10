@@ -10,6 +10,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const [toggleMenu, setToggleMenu] = useState(false);
   const [postData, setPostData] = useState({title:'', tags:'', image:''});
+  const inputEmpty = postData.title && postData.image ? false : true;
   const user = true;
 
   const handleSubmit = async (e) => {
@@ -40,7 +41,7 @@ const Navbar = () => {
             <div className="blog__navbar-menu_section">
               <input type="text" className="blog__navbar-menu_input" placeholder="제목으로 검색" />
               <input type="text" className="blog__navbar-menu_input" placeholder="태그로 검색" />
-              <button className="blog__navbar-menu_button-primary">Search</button>
+              <button className="blog__navbar-menu_button">Search</button>
             </div>
 
             {user && (
@@ -55,7 +56,7 @@ const Navbar = () => {
                   multiple={false}
                   onDone={({base64}) => setPostData({...postData, image:base64})}
                 ></FileBase>
-                <button className="blog__navbar-menu_button-primary" onClick={handleSubmit}>Submit</button>
+                <button className={inputEmpty ? "blog__navbar-menu_button--disabled" : "blog__navbar-menu_button"} onClick={handleSubmit} disabled={inputEmpty}>Submit</button>
                 <button className="blog__navbar-menu_button-secondary" onClick={handleClear}>Clear</button>
               </div>
             )}
