@@ -14,7 +14,7 @@ const Navbar = () => {
   const user = true;
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     await dispatch(createPost(postData));
     handleClear();
     setToggleMenu(false);
@@ -38,14 +38,14 @@ const Navbar = () => {
         }
         {toggleMenu && (
           <div className="blog__navbar-menu_container scale-up-center">
-            <div className="blog__navbar-menu_section">
+            <form className="blog__navbar-menu_section">
               <input type="text" className="blog__navbar-menu_input" placeholder="제목으로 검색" />
               <input type="text" className="blog__navbar-menu_input" placeholder="태그로 검색" />
               <button className="blog__navbar-menu_button">Search</button>
-            </div>
+            </form>
 
             {user && (
-              <div className="blog__navbar-menu_section">
+              <form className="blog__navbar-menu_section">
                 <input type="text" className="blog__navbar-menu_input" placeholder="제목 입력" value={postData.title} onChange={(e) => setPostData({...postData, title: e.target.value})} />
                 <input type="text" className="blog__navbar-menu_input" placeholder="태그 입력 - 쉼표(,)로 구분" value={postData.tags} onChange={(e) => setPostData({...postData, tags: e.target.value.split(',')})} />
                 {postData.image
@@ -56,9 +56,12 @@ const Navbar = () => {
                   multiple={false}
                   onDone={({base64}) => setPostData({...postData, image:base64})}
                 ></FileBase>
-                <button className={inputEmpty ? "blog__navbar-menu_button--disabled" : "blog__navbar-menu_button"} onClick={handleSubmit} disabled={inputEmpty}>Submit</button>
+                <button
+                  className={inputEmpty ? "blog__navbar-menu_button--disabled" : "blog__navbar-menu_button"}
+                  type="submit" onClick={handleSubmit} disabled={inputEmpty}
+                >Submit</button>
                 <button className="blog__navbar-menu_button-secondary" onClick={handleClear}>Clear</button>
-              </div>
+              </form>
             )}
             
             <div className="blog__navbar-menu_log">
