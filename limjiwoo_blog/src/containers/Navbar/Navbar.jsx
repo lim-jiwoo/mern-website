@@ -50,7 +50,7 @@ const Navbar = () => {
                 <input type="text" className="blog__navbar-menu_input" placeholder="태그 입력 - 쉼표(,)로 구분" value={postData.tags} onChange={(e) => setPostData({...postData, tags: e.target.value.split(',')})} />
                 {postData.image
                   ? <img src={postData.image} alt="Uploaded picture" />
-                  : <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="No uploaded picture" />
+                  : <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAABCAQAAABeK7cBAAAAC0lEQVR42mNkAAIAAAoAAv/lxKUAAAAASUVORK5CYII=" alt="No uploaded picture" />
                 }
                 <FileBase
                   multiple={false}
