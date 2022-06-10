@@ -37,7 +37,7 @@ const Navbar = () => {
           : <RiMenu3Line color="var(--color-text)" size={27} onClick={() => setToggleMenu(true)} />
         }
         {toggleMenu && (
-          <div className="blog__navbar-menu_container">
+          <div className="blog__navbar-menu_container scale-up-center">
             <div className="blog__navbar-menu_section">
               <input type="text" className="blog__navbar-menu_input" placeholder="제목으로 검색" />
               <input type="text" className="blog__navbar-menu_input" placeholder="태그로 검색" />
