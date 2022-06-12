@@ -1,8 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './post.css';
 
-const Post = ({title, tags, image}) => {
+const Post = ({post}) => {
+    const {_id, title, tags, image} = post;
 
     // Crop long titles
     const regex = /[ㄱ-ㅎ|가-힣]{20,}/;
@@ -13,13 +15,16 @@ const Post = ({title, tags, image}) => {
     }
 
   return (
-    <div className="blog__post sqaure-image">
-        <div className="blog__post-screen">
-            <div className="blog__post-screen-title">{title}</div>
-            <div className="blog__post-screen-tags">{tags.map(tag => '#'+tag+' ')}</div>
+    <Link to={`/posts/${post._id}`}>
+        <div className="blog__post sqaure-image">
+            <div className="blog__post-screen">
+                <div className="blog__post-screen-title">{title}</div>
+                <div className="blog__post-screen-tags">{tags.map(tag => '#'+tag+' ')}</div>
+            </div>
+            <img src={image} alt="" />
         </div>
-        <img src={image} alt="" />
-    </div>
+    </Link>
+
   )
 }
 
