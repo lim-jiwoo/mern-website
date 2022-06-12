@@ -19,4 +19,15 @@ export const createPosts = async (req, res) => {
     } catch (error) {
         res.status(409).json({message: error.message});
     }
-} 
+}
+
+export const getPost = async(req, res) => {
+    const { id } = req.params;
+    
+    try {
+        const artwork = await Artwork.findById(id);
+        res.status(200).json(artwork);
+    } catch (error) {
+        res.status(404).json({message: error.message});
+    }
+}
