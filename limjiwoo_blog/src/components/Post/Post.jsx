@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
 import './post.css';
+import { deletePost } from '../../actions/posts';
 
 const Post = ({post}) => {
-    const {_id, title, tags, image} = post;
+    const {_id, title, tags, image, likeCount} = post;
+    const dispatch = useDispatch();
+    const user = true;
 
     // Crop long titles
     const regex = /[ㄱ-ㅎ|가-힣]{20,}/;
@@ -14,18 +19,24 @@ const Post = ({post}) => {
         title = title.slice(0, 50)+'...';
     }
 
-  return (
-    <Link to={`/posts/${post._id}`}>
+    const handleDelete = () => {
+        dispatch(deletePost(_id));
+    }
+
+    return (
         <div className="blog__post sqaure-image">
             <div className="blog__post-screen">
-                <div className="blog__post-screen-title">{title}</div>
-                <div className="blog__post-screen-tags">{tags.map(tag => '#'+tag+' ')}</div>
+                <Link className="blog__post-screen-link" to={`/posts/${post._id}`}>
+                    <div className="blog__post-screen-title">{title}</div>
+                    <div className="blog__post-screen-tags">{tags.map(tag => '#'+tag+' ')}</div>
+                </Link>
+                <div className="blog__post-screen-info">
+                    { user && <RiDeleteBin6Line className="blog__post-screen-delete" size={20} onClick={handleDelete}/> }
+                </div>
             </div>
-            <img src={image} alt="" />
+            <img src={image} alt="post image" />
         </div>
-    </Link>
-
-  )
+    )
 }
 
 export default Post

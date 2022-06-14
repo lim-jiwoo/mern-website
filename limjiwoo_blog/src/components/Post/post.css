@@ -1,10 +1,7 @@
 .blog__post {
     display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
     margin: 1rem;
-    cursor: pointer;
 }
 
 .blog__post-screen {
@@ -18,7 +15,6 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 1.5rem;
 }
 .blog__post-screen:hover {
@@ -26,11 +22,26 @@
     opacity: 1;
 }
 
+.blog__post-screen-link {
+    text-decoration: none;
+    flex: 1;
+}
+
 .blog__post-screen-title {
     font: 1.25rem var(--font-family);
 }
 .blog__post-screen-tags {
-    font: 200 1rem var(--font-family);
+    font: 200 .9rem var(--font-family);
+}
+
+.blog__post-screen-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.blog__post-screen-link,
+.blog__post-screen-delete {
+    cursor: pointer;
 }
 
 .blog__post img {
