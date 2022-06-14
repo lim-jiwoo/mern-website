@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import Artwork from '../models/Artwork.js';
 
 export const getPosts = async (req, res) => {
@@ -30,4 +31,14 @@ export const getPost = async(req, res) => {
     } catch (error) {
         res.status(404).json({message: error});
     }
+}
+
+export const deletePost = async(req, res) => {
+    const { id } = req.params;
+
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id');
+    
+    await Artwork.findByIdAndRemove(id);
+
+    res.status(200).json({ message: "Post deleted successfully." });
 }
