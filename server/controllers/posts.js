@@ -39,6 +39,17 @@ export const deletePost = async(req, res) => {
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id');
     
     await Artwork.findByIdAndRemove(id);
-
+    
     res.status(200).json({ message: "Post deleted successfully." });
+}
+
+export const updatePost = async(req, res) => {
+    const { id } = req.params;
+    const artwork = req.body;
+    
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id');
+    
+    const updatedArtwork = await Artwork.findByIdAndUpdate(id, {...artwork, id}, {new: true});
+    
+    res.status(200).json(updatedArtwork);
 }
