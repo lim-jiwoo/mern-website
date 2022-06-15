@@ -1,3 +1,7 @@
+* {
+    font: 1rem/2.5rem var(--font-family);
+}
+
 .blog__navbar {
     display: flex;
     align-items: center;
@@ -9,7 +13,7 @@
 
 .blog__navbar-title {
     display: flex;
-    flex: 50;
+    flex: 1;
     flex-direction: column;
     align-items: center;
 }
@@ -17,83 +21,77 @@
 .blog__navbar-title_name {
     font: 620 2rem var(--font-family);
 }
-
 .blog__navbar-title_desc {
     font: 1.25rem var(--font-family);
 }
 
-
 .blog__navbar-menu {
-    /* flex: 1; */
-    max-width: 3rem;
     position: relative;
 }
 
 .blog__navbar-menu svg {
     cursor: pointer;
+    margin-right: 1rem;
 }
 
-.blog__navbar-menu_container {
+
+
+.blog__modal {
     position: absolute;
     background-color: var(--color-modal);
     top: 3rem;
-    right: 0;
+    right: 1rem;
     border-radius: 5px;
     
     display: flex;
     flex-direction: column;
 }
 
-.blog__navbar-menu_section {
+.blog__modal-container {
     display: flex;
     flex-direction: column;
-    margin: 1rem;
+    margin: 1rem 1rem 0 1rem;
 }
 
-.blog__navbar-menu_input {
+.blog__modal-input {
     background-color: var(--color-bg);
     color: var(--color-subtext);
-    font: 1rem var(--font-family);
-    padding: 1em;
+    padding: .25rem 1rem;
     margin-bottom: .5em;
     width: 27rem;
     border: none;
 }
 
-.blog__navbar-menu_section img {
+.blog__modal-container img {
     border: dashed 3px var(--color-bg);
     padding: 3px;
-    margin-bottom: .5rem;
 }
 
-.blog__navbar-menu_section input[type=file] {
-    font: 1rem/2rem var(--font-family);
+.blog__modal-container input[type=file] {
     color: var(--color-subtext);
     margin-bottom: .5rem;
 }
 
-.blog__navbar-menu_button,
-.blog__navbar-menu_button--disabled {
-    font: 1rem/2.5rem var(--font-family);
+.blog__modal-button,
+.blog__modal-button-secondary,
+.blog__modal-button--disabled {
     color: var(--color-buttontext);
     border: none;
     margin-bottom: .5rem;
+    cursor: pointer;
 }
-.blog__navbar-menu_button {
+.blog__modal-button {
     background-color: var(--color-primary);
-    cursor: pointer;
 }
-
-.blog__navbar-menu_button-secondary {
+.blog__modal-button-secondary {
     background-color: var(--color-secondary);
-    font: 1rem/2.5rem var(--font-family);
-    color: var(--color-buttontext);
-    border: none;
-    cursor: pointer;
+}
+.blog__modal-button--disabled {
+    cursor: default;
 }
 
-
-.blog__navbar-menu_log {
-    margin: 0 1rem 1rem 1rem;
+.blog__modal-log {
+    width: 27rem;
+    margin: 0 1rem;
     text-align: right;
 }

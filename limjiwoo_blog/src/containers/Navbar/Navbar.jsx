@@ -1,41 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {useDispatch} from 'react-redux';
-import {RiMenu3Line, RiCloseLine } from 'react-icons/ri';
-import FileBase from 'react-file-base64';
+import {RiMenu3Line, RiCloseLine, RiSearchLine} from 'react-icons/ri';
 
 import './navbar.css';
-import {createPost, updatePost} from '../../actions/posts';
-import {fetchPost} from '../../api';
+import Search from '../../components/Search/Search';
+import Form from '../../components/Form/Form';
 
 const Navbar = ({currentId, setCurrentId}) => {
-  const dispatch = useDispatch();
   const [toggleMenu, setToggleMenu] = useState(false);
-  const [postData, setPostData] = useState({title:'', tags:[], image:''});
-  const inputEmpty = postData.title && postData.image ? false : true;
-  const user = true;
-  
+  const [toggleSearch, setToggleSearch] = useState(false);
+
   useEffect(() => {
-    if (currentId) {
-      setToggleMenu(true);
-      fetchPost(currentId).then(res => setPostData(res.data));
-    }
+    if (currentId) setToggleMenu(true);
   }, [currentId])
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!currentId) {
-      dispatch(createPost(postData));
-    } else {
-      dispatch(updatePost(currentId, postData));
-      setCurrentId(null);
-    }
-    handleClear();
-    setToggleMenu(false);
-  }
-
-  const handleClear = (e) => {
-    setPostData({title:'', tags:[], image:''});
-  }
 
   return (
     <nav className="blog__navbar">
@@ -45,46 +21,21 @@ const Navbar = ({currentId, setCurrentId}) => {
       </div>
 
       <div className="blog__navbar-menu">
+        {toggleSearch
+          ? <RiCloseLine size={27} onClick={() => setToggleSearch(false)} />
+          : <RiSearchLine size={27} onClick={() => {setToggleSearch(true); setToggleMenu(false); }} />
+        }
+        {toggleSearch &&
+            <Search />
+        }
         {toggleMenu
-          ? <RiCloseLine color="var(--color-text)" size={27} onClick={() => setToggleMenu(false)} />
-          : <RiMenu3Line color="var(--color-text)" size={27} onClick={() => setToggleMenu(true)} />
+          ? <RiCloseLine size={27} onClick={() => {setToggleMenu(false); setCurrentId(null); }} />
+          : <RiMenu3Line size={27} onClick={() => {setToggleMenu(true); setToggleSearch(false); }} />
         }
         {toggleMenu && (
-          <div className="blog__navbar-menu_container scale-up-center">
-            <form className="blog__navbar-menu_section">
-              <input type="text" className="blog__navbar-menu_input" placeholder="제목으로 검색" />
-              <input type="text" className="blog__navbar-menu_input" placeholder="태그로 검색" />
-              <button className="blog__navbar-menu_button">Search</button>
-            </form>
-
-            {user && (
-              <form className="blog__navbar-menu_section">
-                <input type="text" className="blog__navbar-menu_input" placeholder="제목 입력" value={postData.title} onChange={(e) => setPostData({...postData, title: e.target.value})} />
-                <input type="text" className="blog__navbar-menu_input" placeholder="태그 입력 - 쉼표(,)로 구분" value={postData.tags} 
-                  onChange={(e) => { e.target.value ? setPostData({...postData, tags: e.target.value.split(',')}) : setPostData({...postData, tags:[]})}} />
-                {postData.image
-                  ? <img src={postData.image} alt="Uploaded picture" />
-                  : <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAABCAQAAABeK7cBAAAAC0lEQVR42mNkAAIAAAoAAv/lxKUAAAAASUVORK5CYII=" alt="No uploaded picture" />
-                }
-                <FileBase
-                  multiple={false}
-                  onDone={({base64}) => setPostData({...postData, image:base64})}
-                ></FileBase>
-                <button
-                  className={inputEmpty ? "blog__navbar-menu_button--disabled" : "blog__navbar-menu_button"}
-                  type="submit" onClick={handleSubmit} disabled={inputEmpty}
-                >Submit</button>
-                <button className="blog__navbar-menu_button-secondary" type="button" onClick={handleClear}>Clear</button>
-              </form>
-            )}
-            
-            <div className="blog__navbar-menu_log">
-              <a href="">{user ? '관리자 로그아웃' : '관리자 로그인'}</a>
-            </div>
-          </div>
+            <Form currentId={currentId} setCurrentId={setCurrentId} setToggleMenu={setToggleMenu} />
         )}
       </div>
-
     </nav>
   )
 }
