@@ -39,7 +39,15 @@
     justify-content: space-between;
 }
 
+.blog__post-screen-like {
+    display: flex;
+    align-items: flex-start;
+    font: 200 .9rem var(--font-family);
+}
+
 .blog__post-screen-link,
+.blog__post-screen-like,
+.blog__post-screen-edit,
 .blog__post-screen-delete {
     cursor: pointer;
 }

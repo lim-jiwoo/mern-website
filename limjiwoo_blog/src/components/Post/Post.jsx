@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { RiDeleteBin6Line } from 'react-icons/ri';
+import { RiDeleteBin6Line, RiEditLine } from 'react-icons/ri';
 
 import './post.css';
 import { deletePost } from '../../actions/posts';
 
-const Post = ({post}) => {
+const Post = ({post, setCurrentId}) => {
     const {_id, title, tags, image, likeCount} = post;
     const dispatch = useDispatch();
     const user = true;
@@ -26,11 +26,12 @@ const Post = ({post}) => {
     return (
         <div className="blog__post sqaure-image">
             <div className="blog__post-screen">
-                <Link className="blog__post-screen-link" to={`/posts/${post._id}`}>
+                <Link className="blog__post-screen-link" to={`/posts/${_id}`}>
                     <div className="blog__post-screen-title">{title}</div>
                     <div className="blog__post-screen-tags">{tags.map(tag => '#'+tag+' ')}</div>
                 </Link>
                 <div className="blog__post-screen-info">
+                    { user && <RiEditLine className="blog__post-screen-edit" size={20} onClick={() => setCurrentId(_id)} /> }
                     { user && <RiDeleteBin6Line className="blog__post-screen-delete" size={20} onClick={handleDelete}/> }
                 </div>
             </div>

@@ -1,26 +1,39 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 import FileBase from 'react-file-base64';
 
 import './navbar.css';
-import {createPost} from '../../actions/posts';
+import {createPost, updatePost} from '../../actions/posts';
+import {fetchPost} from '../../api';
 
-const Navbar = () => {
+const Navbar = ({currentId, setCurrentId}) => {
   const dispatch = useDispatch();
   const [toggleMenu, setToggleMenu] = useState(false);
   const [postData, setPostData] = useState({title:'', tags:[], image:''});
   const inputEmpty = postData.title && postData.image ? false : true;
   const user = true;
+  
+  useEffect(() => {
+    if (currentId) {
+      setToggleMenu(true);
+      fetchPost(currentId).then(res => setPostData(res.data));
+    }
+  }, [currentId])
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await dispatch(createPost(postData));
+    if (!currentId) {
+      dispatch(createPost(postData));
+    } else {
+      dispatch(updatePost(currentId, postData));
+      setCurrentId(null);
+    }
     handleClear();
     setToggleMenu(false);
   }
 
-  const handleClear = () => {
+  const handleClear = (e) => {
     setPostData({title:'', tags:[], image:''});
   }
 
@@ -47,7 +60,8 @@ const Navbar = () => {
             {user && (
               <form className="blog__navbar-menu_section">
                 <input type="text" className="blog__navbar-menu_input" placeholder="제목 입력" value={postData.title} onChange={(e) => setPostData({...postData, title: e.target.value})} />
-                <input type="text" className="blog__navbar-menu_input" placeholder="태그 입력 - 쉼표(,)로 구분" value={postData.tags} onChange={(e) => setPostData({...postData, tags: e.target.value.split(',')})} />
+                <input type="text" className="blog__navbar-menu_input" placeholder="태그 입력 - 쉼표(,)로 구분" value={postData.tags} 
+                  onChange={(e) => { e.target.value ? setPostData({...postData, tags: e.target.value.split(',')}) : setPostData({...postData, tags:[]})}} />
                 {postData.image
                   ? <img src={postData.image} alt="Uploaded picture" />
                   : <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAABCAQAAABeK7cBAAAAC0lEQVR42mNkAAIAAAoAAv/lxKUAAAAASUVORK5CYII=" alt="No uploaded picture" />
@@ -60,7 +74,7 @@ const Navbar = () => {
                   className={inputEmpty ? "blog__navbar-menu_button--disabled" : "blog__navbar-menu_button"}
                   type="submit" onClick={handleSubmit} disabled={inputEmpty}
                 >Submit</button>
-                <button className="blog__navbar-menu_button-secondary" onClick={handleClear}>Clear</button>
+                <button className="blog__navbar-menu_button-secondary" type="button" onClick={handleClear}>Clear</button>
               </form>
             )}
             
