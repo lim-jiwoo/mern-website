@@ -1,18 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import { About, Artwork, Artworks, Cover, Navbar } from './containers';
-import { getPosts } from './actions/posts';
 
 const App = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getPosts());
-    }, [dispatch]);
-
     return (
         <BrowserRouter>
             <Navbar />
