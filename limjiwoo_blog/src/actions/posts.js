@@ -1,5 +1,5 @@
 import * as api from '../api';
-import {FETCH_ALL, CREATE, DELETE, UPDATE} from '../constants/actionTypes';
+import {FETCH_ALL, CREATE, DELETE, UPDATE, SET_ID} from '../constants/actionTypes';
 
 export const getPosts = () => async(dispatch) => {
     try {
@@ -35,4 +35,8 @@ export const updatePost = (id, post) => async(dispatch) => {
     } catch (error) {
         console.log(error);
     }
+}
+
+export const setCurrentId = (id) => {
+    return { type: SET_ID, payload: id };
 }

@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import FileBase from 'react-file-base64';
 
-import {createPost, updatePost} from '../../actions/posts';
+import {createPost, updatePost, setCurrentId} from '../../actions/posts';
 import {fetchPost} from '../../api';
 
-const Form = ({currentId, setCurrentId, setToggleMenu}) => {
+const Form = ({setToggleMenu}) => {
     const dispatch = useDispatch();
     const [postData, setPostData] = useState({title:'', tags:[], image:''});
     const inputEmpty = postData.title && postData.image ? false : true;
+    const currentId = useSelector((state) => state.posts.id);
     const user = true;
 
     useEffect(() => {
@@ -23,7 +24,7 @@ const Form = ({currentId, setCurrentId, setToggleMenu}) => {
         dispatch(createPost(postData));
       } else {
         dispatch(updatePost(currentId, postData));
-        setCurrentId(null);
+        dispatch(setCurrentId(null));
       }
       handleClear();
       setToggleMenu(false);

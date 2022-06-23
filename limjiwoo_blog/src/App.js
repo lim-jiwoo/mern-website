@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -8,7 +8,6 @@ import { getPosts } from './actions/posts';
 
 const App = () => {
     const dispatch = useDispatch();
-    const [currentId, setCurrentId] = useState(null);
 
     useEffect(() => {
         dispatch(getPosts());
@@ -16,9 +15,9 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <Navbar currentId={currentId} setCurrentId={setCurrentId} />
+            <Navbar />
             <Routes>
-                <Route path="/posts" element={<Artworks setCurrentId={setCurrentId} />}/>
+                <Route path="/posts" element={<Artworks />} />
                 <Route path="/posts/:id" element={<Artwork />}/>
             </Routes>
         </BrowserRouter>

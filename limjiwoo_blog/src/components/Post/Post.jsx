@@ -4,11 +4,11 @@ import { useDispatch } from 'react-redux';
 import { RiDeleteBin6Line, RiEditLine } from 'react-icons/ri';
 
 import './post.css';
-import { deletePost } from '../../actions/posts';
+import { deletePost, setCurrentId } from '../../actions/posts';
 
-const Post = ({post, setCurrentId}) => {
-    const {_id, title, tags, image, likeCount} = post;
+const Post = ({post}) => {
     const dispatch = useDispatch();
+    const {_id, title, tags, image, likeCount} = post;
     const user = true;
 
     // Crop long titles
@@ -31,7 +31,7 @@ const Post = ({post, setCurrentId}) => {
                     <div className="blog__post-screen-tags">{tags.map(tag => '#'+tag+' ')}</div>
                 </Link>
                 <div className="blog__post-screen-info">
-                    { user && <RiEditLine className="blog__post-screen-edit" size={20} onClick={() => setCurrentId(_id)} /> }
+                    { user && <RiEditLine className="blog__post-screen-edit" size={20} onClick={() => dispatch(setCurrentId(_id))} /> }
                     { user && <RiDeleteBin6Line className="blog__post-screen-delete" size={20} onClick={handleDelete}/> }
                 </div>
             </div>

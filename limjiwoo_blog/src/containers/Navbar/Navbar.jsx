@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import {RiMenu3Line, RiCloseLine, RiSearchLine} from 'react-icons/ri';
+import {useSelector, useDispatch} from 'react-redux';
 
 import './navbar.css';
 import Search from '../../components/Search/Search';
 import Form from '../../components/Form/Form';
+import {setCurrentId} from '../../actions/posts';
 
-const Navbar = ({currentId, setCurrentId}) => {
+const Navbar = () => {
+  const dispatch = useDispatch();
+  const currentId = useSelector((state) => state.posts.id);
   const [toggleMenu, setToggleMenu] = useState(false);
   const [toggleSearch, setToggleSearch] = useState(false);
 
@@ -29,11 +33,11 @@ const Navbar = ({currentId, setCurrentId}) => {
             <Search />
         }
         {toggleMenu
-          ? <RiCloseLine size={27} onClick={() => {setToggleMenu(false); setCurrentId(null); }} />
+          ? <RiCloseLine size={27} onClick={() => {setToggleMenu(false); dispatch(setCurrentId(null)); }} />
           : <RiMenu3Line size={27} onClick={() => {setToggleMenu(true); setToggleSearch(false); }} />
         }
         {toggleMenu && (
-            <Form currentId={currentId} setCurrentId={setCurrentId} setToggleMenu={setToggleMenu} />
+            <Form setToggleMenu={setToggleMenu} />
         )}
       </div>
     </nav>
