@@ -3,8 +3,7 @@ import {RiMenu3Line, RiCloseLine, RiSearchLine} from 'react-icons/ri';
 import {useSelector, useDispatch} from 'react-redux';
 
 import './navbar.css';
-import Search from '../../components/Search/Search';
-import Form from '../../components/Form/Form';
+import {Search, Form} from '../../components';
 import {setCurrentId} from '../../actions/posts';
 
 const Navbar = () => {

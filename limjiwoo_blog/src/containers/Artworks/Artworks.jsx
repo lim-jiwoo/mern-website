@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import './artworks.css';
-import Post from '../../components/Post/Post';
+import { Post } from '../../components';
 import { getPosts } from '../../actions/posts';
 
 const Artworks = () => {
