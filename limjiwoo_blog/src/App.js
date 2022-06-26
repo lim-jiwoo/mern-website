@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.css';
-import { About, Artwork, Artworks, Cover, Navbar } from './containers';
+import { About, Artwork, Artworks, Auth, Cover, Navbar } from './containers';
 
 const App = () => {
     return (
@@ -11,6 +11,7 @@ const App = () => {
             <Routes>
                 <Route path="/posts" element={<Artworks />} />
                 <Route path="/posts/:id" element={<Artwork />}/>
+                <Route path="/auth" element={<Auth />}/>
             </Routes>
         </BrowserRouter>
     )

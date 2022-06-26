@@ -1,0 +1,30 @@
+.blog__auth {
+    margin: auto;
+    width: 40vw;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog__auth-title {
+    font: 500 1.5rem var(--font-family);
+}
+
+.blog__auth-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.blog__auth-button {
+    cursor: pointer;
+    background-color: var(--color-secondary);
+    margin-bottom: .5rem;
+}
+
+.blog__auth-input {
+    padding: .25rem 1rem;
+    margin-bottom: .5rem;
+    font: 1rem/2.5rem var(--font-family);
+}
